@@ -109,11 +109,26 @@ module.exports={
                 favorites.push(dto);
             }
             user.favorites=favorites;
+            await user.save();
+            return dto;
         }catch(error){
             throw new Error(error.message);
         }
 
-    }
+    },
+     async updateRestaurantStatus(id){
+        try{
+            const restaurant = await Restaurant.findById(id).populate("owner").populate("address");
+            if(restaurant){
+                throw new Error("Restaurnat not found");
+            }
+            restaurant.open=!restaurant.open;
+            await restaurant.save();
+            return restaurant;
+        }catch(error){
+            throw new Error(error.message);
+        }
+     }
 
 
     /* async getAllRestaurants(req,user){

@@ -3,7 +3,7 @@ const userService = require("../service/userService")
 const bcrypt= require('bcrypt');
 const register=async(req,res)=>{
     try{
-        const user= await userService.createUser(req,body);
+        const user= await userService.createUser(req.body);
         const jwt=generateToken(user._id);
         
 

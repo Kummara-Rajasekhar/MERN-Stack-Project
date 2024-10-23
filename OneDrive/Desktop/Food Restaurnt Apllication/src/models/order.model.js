@@ -3,7 +3,7 @@ const mongoose= require("mongoose");
 const OrderSchema=new mongoose.Schema({
     customer:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:'user'
+        ref:'User'
     },
     restaurant:{
         type:mongoose.Schema.Types.ObjectId,
