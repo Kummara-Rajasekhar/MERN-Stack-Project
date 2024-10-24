@@ -14,12 +14,12 @@ module.exports={
 
         }
     },
-     deleteRestaurant: async(req,res)=>{
+     deleteRestaurantById: async(req,res)=>{
         try{
               const {id}= req.params;
               /* const {jwt}=req.body; */
               const user=req.user;
-              await restaurantService.deleteRestaurant(id);
+              await restaurantService.deleteRestaurantById(id);
               res.status(200).json({
                 message:"Restaurant Deleted with id Successfully",
                 success:true

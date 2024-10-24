@@ -4,7 +4,7 @@ const Food = require("../models/food.model")
 
 module.exports={
     async createCart(user){
-        const cart =new  Cart({Customer:user});
+        const cart =new  Cart({customer:user});
         const createCart =await cart.save();
         return createCart;
     },
@@ -17,7 +17,9 @@ module.exports={
                 path: "items",
                 populate:{
                     path:"food",
-                    populate:{path:"restaurabt" , select :"_id"},
+                    populate:{
+                        path:"restaurant" , select :"_id"
+                    },
                 },
             },
         ]);
@@ -47,6 +49,7 @@ module.exports={
 
     async addItemToCart(req,userId){
         const cart= await Cart.findOne({customer:userId});
+        
         const food= await Food.findById(req.memuItemId);
         const isPresent =await CartItem.findOne({
             cart:cart._id,
@@ -54,7 +57,7 @@ module.exports={
             userId,
         });
          if(!isPresent){
-            const cartItem =new Cartitem({
+            const cartItem =new CartItem({
                 food:food._id,
                 cart:cart._id,
                 quantity:1,
@@ -124,4 +127,4 @@ module.exports={
     
 
 
-}
+};

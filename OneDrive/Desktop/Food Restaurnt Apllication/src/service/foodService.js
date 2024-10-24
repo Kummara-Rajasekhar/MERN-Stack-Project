@@ -4,7 +4,7 @@ const { key } = require("localforage");
 module.exports={
     async createFood(req,restaurant){
         try{
-               const food=new Food({
+            const food=new Food({
                 foodCategory:req.category,
                 creationDate:new Date(),
                 description:req.description,
@@ -15,11 +15,11 @@ module.exports={
                 isVegetarian:req.isVegetarian,
                 restaurant:req.restaurant,
                 ingredients:req.ingredients,
-               });
-               await food.save();
-               restaurant.foods.push(food._id);
-               await restaurant.save();
-               return food;
+            });
+            await food.save();
+            restaurant.foods.push(food._id);
+            await restaurant.save();
+            return food;
         }catch(error){
             throw new Error(`Failed to create food : ${error.message}`);
         }
@@ -47,7 +47,7 @@ module.exports={
         foodCategory
     ){
         try{
-              let query={restart :restaurantId};
+              let query={restaurant :restaurantId};
               if(vegetarian==="true"){
                 query.isVegetarian=true;
               }

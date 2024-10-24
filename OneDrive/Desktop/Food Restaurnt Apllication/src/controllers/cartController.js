@@ -13,12 +13,11 @@ module.exports={
               res.status(200).json(cart);
               
         }catch(error){
-            if(error instanceof Error){
+            if( error instanceof Error){
                 res.status(400).json({error:error.message});
             }
             else{
-                res.status(500).json({error:"Internal server error"});
-
+                res.status(500).json({error: "Internal server eroor"})
             }
         }
     },
@@ -59,7 +58,7 @@ module.exports={
         try{
               const {cartId,jwt}=req.query;
               const user=await userService.findUserProfileByJwt(jwt);
-              const cart=await cartService.findCartByUserId(user.getId());
+              const cart=await cartService.findCartByUserId(user._id);
               const total=await cartService.calculateCartTotal(cart);
               res.status(200),json(total);
         }catch(error){

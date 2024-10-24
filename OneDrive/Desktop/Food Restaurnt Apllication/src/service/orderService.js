@@ -2,8 +2,8 @@ const Address= require("../models/addres.model")
 const Order=require("../models/order.model")
 const OrderItem= require("../models/orderItem.model")
 const Restaurant=require("../models/restaurant.model")
-const cartService=require("./cartService")
-const paymenstService=require("./paymentService");
+/* 
+ */
 
 
 
@@ -28,7 +28,7 @@ module.exports={
               }
 
               const restaurant =await Restaurant.findById(order.restaurantId);
-              if(!restaurantId){
+              if(!restaurant){
                 throw new Error(` Restaurant not found with ID ${order.restaurantId}`);
 
               }

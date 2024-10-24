@@ -5,7 +5,7 @@ const userService = require("../service/userService");
  module.exports={
 
 
-    search:async (req,res)=>{
+    searchFood:async (req,res)=>{
         try{
             const {name}=req.query;
             const menuItem=await foodServicee.searchFood(name);

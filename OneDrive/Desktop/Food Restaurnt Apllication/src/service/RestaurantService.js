@@ -1,12 +1,12 @@
 const { optimizeDeps } = require("vite");
 const Restaurant= require("../models/restaurant.model");
-
+const Address=require("../models/addres.model");
 module.exports={
 
 
     async createRestaurant(req,user){
         try{
-            const address=new address({
+            const address=new Address({
                 city:req.address.city,
                 country:req.address.country,
                 fullName:req.address.fullName,
@@ -14,9 +14,9 @@ module.exports={
                 state:req.address.state,
                 streetAddress:req.address.streetAddress,
             })
-            const savedAddress= await address.save();
+            const savedAddress= await Address.save();
 
-            const restaurant=new restaurant({
+            const restaurant=new Restaurant({
                 address:savedAddress,
                 contactInformation:req.contactInformation,
                 cuisineType:req.cuisineType,
@@ -27,9 +27,9 @@ module.exports={
                 registrationDate:req.registrationDate,
                 owner:user,
             })
-            const savedRestaurant= restaurant.save();
+            const savedRestaurant= Restaurant.save();
 
-
+           
         }catch(error){
             throw new Error(error.message);
         }
@@ -39,7 +39,7 @@ module.exports={
 
     async findRestaurantById(restaurantId){
          try{
-            const restaurant=await restaurant.findById(restaurantId);
+            const restaurant=await Restaurant.findById(restaurantId);
             id(!restaurant)
             throw new Error("Restaurant not found");
             
@@ -49,7 +49,7 @@ module.exports={
         }
     },
 
-    async deleteRestaurant(restaurantId){
+    async deleteRestaurantById(restaurantId){
         try{
             this.findRestaurantById(restaurantId);
             const restaurant= await Restaurant.deleteById(restaurantId);
@@ -119,7 +119,7 @@ module.exports={
      async updateRestaurantStatus(id){
         try{
             const restaurant = await Restaurant.findById(id).populate("owner").populate("address");
-            if(restaurant){
+            if(!restaurant){
                 throw new Error("Restaurnat not found");
             }
             restaurant.open=!restaurant.open;

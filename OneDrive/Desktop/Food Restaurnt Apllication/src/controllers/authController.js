@@ -19,7 +19,7 @@ const login=async (req,res)=>{
 const {password,email}=req.body;
 try{
     const user= await userService.getUserByEmail(email);
-    const isPasswordMatch= await bcrypt.compare(password,user.password);
+    const isPasswordMatch= bcrypt.compare(password, user.password);
     if(!isPasswordMatch){
         return res.status(401).send({message:"invalid password"});
     }
@@ -31,8 +31,7 @@ try{
 }
 }
 
-
 module.exports={
     register,
-    login
+    login,
 }

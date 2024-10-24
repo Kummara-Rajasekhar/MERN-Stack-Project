@@ -45,7 +45,7 @@ module.exports={
 
     async findUserById(userId){
         try{
-            const user= await User.findById(userId).populate("address");
+            const user= await User.findById(userId);
             if(!user){
                 throw new Error("User Not Found with id - ",userId );
             }
