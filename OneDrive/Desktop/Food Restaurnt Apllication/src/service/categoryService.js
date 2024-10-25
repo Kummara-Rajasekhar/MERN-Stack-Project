@@ -32,7 +32,7 @@ module.exports={
         try{
               const category=await Category.findById(categoryId);
               if(!category){
-                throw new Error(    ` Category not found with ID ${categoryId}`);
+                throw new Error(` Category not found with ID ${categoryId}`);
               }
               return category;
         }catch(error){

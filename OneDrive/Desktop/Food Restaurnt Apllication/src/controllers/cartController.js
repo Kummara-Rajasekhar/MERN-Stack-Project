@@ -46,11 +46,7 @@ module.exports={
             const cart= await cartService.removeCartItemfromCart(id,user);
             res.status(200).json(cart);  
         }catch(error){
-            try{
-              
-            }catch(error){
-                throw new Error(error.message);
-            }
+            throw new Error(error.message);
         }
     },
 

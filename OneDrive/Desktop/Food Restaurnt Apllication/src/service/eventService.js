@@ -11,7 +11,7 @@ module.exports={
 
             }
             const createdEvent=new Event({
-                restauran:restaurant,
+                restaurant:restaurant,
                 image:event.image,
                 startedAt:event.startedAt,
                 endsAt:event.endsAt,
@@ -55,7 +55,7 @@ module.exports={
                 throw new Error(` Event not found with ID ${eventId}`);
 
             }
-            return event;
+            return events;
         }
         catch(error){
             throw new Error(` Failed to find events with ID ${eventId}`);

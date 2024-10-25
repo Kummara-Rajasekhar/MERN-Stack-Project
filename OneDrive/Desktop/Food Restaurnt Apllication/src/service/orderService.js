@@ -23,7 +23,7 @@ module.exports={
                 }
               }
               if(!user.address.include(savedAddress._id)){
-                user.addres.push(savedAddress._id);
+                user.address.push(savedAddress._id);
                 await user.save();
               }
 
